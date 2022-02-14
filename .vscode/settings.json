@@ -19,4 +19,8 @@
     "reactSnippets.settings.prettierEnabled": true,
     "prettier.semi": false,
     "prettier.tabWidth": 4,
+    "emmet.showAbbreviationSuggestions": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
 }

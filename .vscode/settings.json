@@ -9,7 +9,7 @@
         "comments": true,
         "strings": true
     },
-    "editor.snippetSuggestions": "top",
+    "editor.snippetSuggestions": "inline",
     "editor.suggest.localityBonus": true,
     "editor.suggest.preview": true,
     "editor.suggest.shareSuggestSelections": true,
@@ -22,5 +22,6 @@
     "emmet.showAbbreviationSuggestions": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
-    }
+    },
+    "reactSnippets.settings.importReactOnTop": false
 }

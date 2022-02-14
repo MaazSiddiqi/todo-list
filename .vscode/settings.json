@@ -1,0 +1,22 @@
+{
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorStyle": "line-thin",
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.fontSize": 18,
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.snippetSuggestions": "top",
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.preview": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.suggestSelection": "recentlyUsed",
+    "files.autoSave": "onFocusChange",
+    "workbench.list.smoothScrolling": true,
+    "reactSnippets.settings.prettierEnabled": true,
+    "prettier.semi": false,
+    "prettier.tabWidth": 4,
+}

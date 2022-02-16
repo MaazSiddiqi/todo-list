@@ -12,7 +12,7 @@ export default function AddTodo({ onSubmit }) {
             }}
             className="flex flex-col items-center p-8 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl space-y-6 w-full"
         >
-            <h1 className="text-4xl font-bold">Add a Todo</h1>
+            <h1 className="text-xl font-bold">Add a Todo</h1>
             <div className="flex space-x-3 w-full justify-around">
                 <input
                     type="text"

@@ -1,11 +1,25 @@
-export default function Todo({ name }) {
+import React, { useEffect } from "react"
+
+export default function Todo({ key, name, onDelete }) {
+    useEffect(() => {
+        return () => {
+            console.log(`${name} is being deleted`)
+        }
+    }, [])
+
     return (
-        <div className="flex justify-between bg-gradient-to-r from-sky-600 to-cyan-600 w-full py-4 px-8 rounded-3xl font-semibold text-lg hover:scale-105 transition-all duration-200">
+        <div
+            key={key ? key : `Todo-${name}`}
+            className="flex justify-between bg-gradient-to-r from-sky-600 to-cyan-600 w-full py-4 px-8 rounded-3xl font-semibold text-lg hover:scale-105 transition-all duration-200"
+        >
             <div className="flex items-center">
                 <h1>{name}</h1>
                 {/* Add More Properties here */}
             </div>
-            <button className="hover:bg-white hover:text-red-600 active:bg-red-800 active:scale-95 rounded-full p-[2px] transition-all duration-200">
+            <button
+                onClick={onDelete && (() => onDelete(name))}
+                className="hover:bg-white hover:text-red-600 active:bg-red-800 active:scale-95 rounded-full p-[2px] transition-all duration-200"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-10"

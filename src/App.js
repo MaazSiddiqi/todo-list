@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import AddTodo from "./components/AddTodo"
 import Todo from "./components/Todo"
 
 import "./App.css"
@@ -6,56 +7,53 @@ import "./App.css"
 function App({}) {
     const [Todos, setTodos] = useState([])
 
-    const [todoName, setTodoName] = useState("")
+    useEffect(() => {
+        console.log("Initializing Todos...")
+
+        return () => {
+            console.log("Saving Todos...")
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log("Updating Todos...")
+        console.log("Todos", JSON.stringify(Todos, null, 2))
+    }, [Todos])
 
     const addTodo = (todo, e) => {
-        e.preventDefault()
         if (todo === "") return
 
         console.log("Adding Todo:", todo)
 
         if (Todos.includes(todo)) {
-            console.log("Already in Todos List")
-        } else {
-            setTodos([...Todos, todo])
-            console.log("Todos", JSON.stringify(Todos, null, 2))
+            console.warn("Already in Todos List")
+            return
         }
 
-        setTodoName("")
+        setTodos([...Todos, todo])
+    }
+
+    const deleteTodo = (name, e) => {
+        if (!Todos.includes(name)) {
+            console.warn(`Todo: ${name} not found`)
+            return
+        }
+
+        console.log(`Removing todo: '${name}'...`)
+        const updatedTodos = [...Todos]
+        const todoIdx = updatedTodos.indexOf(name)
+
+        setTodos(updatedTodos.filter((todo) => todo !== name))
     }
 
     return (
-        <div className="flex flex-col items-center justify-center bg-gray-800 w-screen h-screen text-slate-50">
-            <div className="flex flex-col items-center justify-center space-y-8 bg-gray-600 p-16 rounded-2xl max-h-screen">
-                <form
-                    onSubmit={(e) => addTodo(todoName, e)}
-                    className="flex flex-col items-center p-8 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl space-y-6"
-                >
-                    <h1 className="text-4xl font-bold">Add a Todo</h1>
-                    <div className="flex space-x-3">
-                        <input
-                            type="text"
-                            className="text-gray-700 p-2 rounded-md w-[50vh]"
-                            value={todoName}
-                            onChange={(e) => {
-                                setTodoName(e.target.value)
-                            }}
-                        />
-                        <button
-                            type="submit"
-                            className="px-4 py-2 bg-gradient-to-br from-sky-600 to-sky-500 rounded-xl hover:scale-105 active:scale-95 transition-all duration-200"
-                        >
-                            Add Todo
-                        </button>
-                    </div>
-                </form>
-                <Todo name="Sample Todo" />
+        <div className="flex flex-col items-center bg-gray-800 min-w-screen min-h-screen text-slate-50 overflow-x-hidden">
+            <div className="flex flex-col justify-center space-y-8 bg-gray-600 p-16 m-[25vh] rounded-2xl min-h-fit w-[50vw]">
+                <AddTodo onSubmit={addTodo} />
 
-                <div className="overflow-y-clip overflow-x-hidden h-1/2 w-full space-y-8 p-0">
-                    {Todos.map((todo) => (
-                        <Todo name={todo} />
-                    ))}
-                </div>
+                {Todos.map((todo, idx) => (
+                    <Todo key={idx} name={todo} onDelete={deleteTodo} />
+                ))}
             </div>
         </div>
     )
